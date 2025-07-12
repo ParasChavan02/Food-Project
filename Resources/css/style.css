@@ -1,3 +1,41 @@
+/* Responsive fixes for overflow and images */
+@media (max-width: 900px) {
+  .meals-showcase {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .meals-showcase li {
+    flex: 1 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .meals-showcase {
+    flex-direction: column;
+    gap: 0;
+  }
+  .meals-showcase li {
+    flex: 1 0 100%;
+    max-width: 100%;
+  }
+  .meal-photo {
+    height: 160px;
+  }
+}
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Make images scale and not overflow */
+.meal-photo img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
 /* Footer Styles */
 footer {
   background: #222;
