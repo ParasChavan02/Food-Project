@@ -791,3 +791,169 @@ textarea{
 input[type=checkbox]{
    margin: 10px 5px 10px 0;
 }
+
+/* ===================== Responsive Improvements ===================== */
+
+/* Large screens (desktops >1200px) */
+@media (max-width: 1200px) {
+  .row, .hero-text-box {
+    max-width: 95vw;
+    width: 95vw;
+  }
+  .hero-text-box {
+    width: 90vw;
+  }
+}
+
+/* Tablets and small desktops (<=900px) */
+@media (max-width: 900px) {
+  .row, .hero-text-box {
+    max-width: 98vw;
+    width: 98vw;
+  }
+  .hero-text-box {
+    width: 95vw;
+    padding: 0 2vw;
+  }
+  .main-nav li {
+    margin-left: 18px;
+  }
+  .features-row, .section-cities .row, .section-testimonials .row, .section-plans .row {
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
+  .feature-col, .section-cities .col, .section-testimonials .col, .plan-box {
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 24px;
+  }
+  .steps-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .steps-img-box, .steps-content-box {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* Mobile (<=600px) */
+@media (max-width: 600px) {
+  header {
+    height: 60vh;
+    min-height: 340px;
+    background-attachment: scroll;
+  }
+  .hero-text-box {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: 100vw;
+    text-align: center;
+    padding: 0 4vw;
+  }
+  .logo {
+    height: 60px;
+    margin-top: 10px;
+  }
+  .main-nav {
+    float: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    padding: 8px 0;
+  }
+  .main-nav li {
+    display: block;
+    margin: 10px 0;
+  }
+  .features-row, .section-cities .row, .section-testimonials .row, .section-plans .row {
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
+  .feature-col, .section-cities .col, .section-testimonials .col, .plan-box {
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 18px;
+  }
+  .steps-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .steps-img-box img {
+    max-width: 220px;
+    width: 90vw;
+  }
+  .app-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .footer-nav, .social-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .footer-nav li, .social-links li {
+    margin-bottom: 8px;
+  }
+  .footer-copyright {
+    text-align: left;
+    margin: 18px 0 0 0;
+  }
+  .section-form .row {
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
+  .section-form .col {
+    width: 100%;
+    align-items: stretch;
+  }
+  .contact-form {
+    width: 98vw;
+    min-width: 0;
+  }
+}
+
+/* Extra small mobile (<=400px) */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 140%;
+  }
+  h2 {
+    font-size: 120%;
+  }
+  .hero-text-box {
+    padding: 0 2vw;
+  }
+  .main-nav li a {
+    font-size: 80%;
+    padding: 6px 0;
+  }
+  .plan-box {
+    padding: 12px 4px;
+  }
+  .steps-img-box img {
+    max-width: 140px;
+  }
+}
+
+/* ===================== End Responsive Improvements ===================== */
