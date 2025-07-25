@@ -1,3 +1,78 @@
+/* Hamburger menu styles */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1002;
+}
+.nav-toggle-bar {
+  width: 28px;
+  height: 4px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-toggle.open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: flex;
+    position: absolute;
+    right: 24px;
+    top: 32px;
+  }
+  .main-nav {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: rgba(34,34,34,0.98);
+    flex-direction: column;
+    align-items: flex-end;
+    width: 220px;
+    padding: 24px 0 24px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-radius: 0 0 0 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: all 0.3s;
+    z-index: 1001;
+  }
+  .main-nav.nav-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .main-nav li {
+    margin: 18px 32px 18px 0;
+    display: block;
+  }
+  .main-nav li a {
+    color: #fff;
+    font-size: 1.1em;
+    border-bottom: none;
+    padding: 8px 0;
+    display: block;
+  }
+  .nav-row {
+    position: relative;
+  }
+}
 /* Responsive fixes for overflow and images */
 @media (max-width: 900px) {
   .meals-showcase {
