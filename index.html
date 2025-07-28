@@ -15,20 +15,26 @@
  <body>
   <header>
     <nav>
-      <div class="row nav-row">
-        <img class="logo" src="Resources/css/img/360_F_553007886_vpgBDlwAyAaCTABowvIaPMPg437haVKR.jpg" alt="">
-        <button class="nav-toggle" aria-label="Open navigation menu">
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-        </button>
-        <ul class="main-nav">
-          <li><a href="#features">Food delivery</a></li>
-          <li><a href="#hiw">How it works</a></li>
-          <li><a href="#city">Our cities</a></li>
-          <li><a href="#signup">Signup</a></li>
-        </ul>
-      </div>
+        <div class="row">
+            <img class="logo" src="Resources/css/img/360_F_553007886_vpgBDlwAyAaCTABowvIaPMPg437haVKR.jpg" alt="">
+            
+            <!-- Hamburger Menu Button -->
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            
+            <ul class="main-nav">
+                <li><a href="#features">Food delivery</a></li>
+                <li><a href="#hiw">How it works</a></li>
+                <li><a href="#city">Our cities</a></li>
+                <li><a href="#signup">Signup</a></li>
+            </ul>
+        </div>
+       
     </nav>
     <div class="hero-text-box">
       <h1>Goodbye junk food <br>Hello super healthy food</h1>
@@ -458,6 +464,26 @@ $(document).ready(function(){
       });
     } // End if
   });
+
+  // Hamburger menu toggle functionality
+  $('.mobile-nav-toggle').on('click', function() {
+    $('.hamburger').toggleClass('open');
+    $('.main-nav').toggleClass('active');
+  });
+
+  // Close menu when clicking on a nav link
+  $('.main-nav a').on('click', function() {
+    $('.hamburger').removeClass('open');
+    $('.main-nav').removeClass('active');
+  });
+
+  // Close menu when clicking outside
+  $(document).on('click', function(event) {
+    if (!$(event.target).closest('nav').length) {
+      $('.hamburger').removeClass('open');
+      $('.main-nav').removeClass('active');
+    }
+  });
 });
 </script>
  
@@ -465,15 +491,6 @@ $(document).ready(function(){
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
-    // Hamburger menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      const navToggle = document.querySelector('.nav-toggle');
-      const mainNav = document.querySelector('.main-nav');
-      navToggle.addEventListener('click', function() {
-        mainNav.classList.toggle('nav-open');
-        navToggle.classList.toggle('open');
-      });
-    });
   </script>
 
  </body>

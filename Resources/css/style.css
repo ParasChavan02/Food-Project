@@ -74,10 +74,28 @@
   }
 }
 /* Responsive fixes for overflow and images */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.row {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 @media (max-width: 900px) {
   .meals-showcase {
     flex-wrap: wrap;
     gap: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
   .meals-showcase li {
     flex: 1 0 50%;
@@ -89,14 +107,32 @@
   .meals-showcase {
     flex-direction: column;
     gap: 0;
+    width: 100%;
   }
   .meals-showcase li {
     flex: 1 0 100%;
     max-width: 100%;
+    width: 100%;
   }
   .meal-photo {
     height: 160px;
+    width: 100%;
   }
+}
+
+/* Make images scale and not overflow */
+.meal-photo img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ensure all containers respect viewport width */
+.container, .row, .hero-text-box {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Prevent horizontal overflow */
@@ -849,7 +885,7 @@ input[type="submit"] {
   border: 1px solid #e67e22;
   font-size: 100%;
   cursor: pointer;
-  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
 input[type="submit"]:hover,
@@ -874,6 +910,8 @@ input[type=checkbox]{
   .row, .hero-text-box {
     max-width: 95vw;
     width: 95vw;
+    margin: 0 auto;
+    padding: 0 2.5vw;
   }
   .hero-text-box {
     width: 90vw;
@@ -885,10 +923,15 @@ input[type=checkbox]{
   .row, .hero-text-box {
     max-width: 98vw;
     width: 98vw;
+    margin: 0 auto;
+    padding: 0 1vw;
   }
   .hero-text-box {
     width: 95vw;
     padding: 0 2vw;
+  }
+  .main-nav {
+    display: none; /* Hide navigation on tablets, will show hamburger menu */
   }
   .main-nav li {
     margin-left: 18px;
@@ -897,15 +940,18 @@ input[type=checkbox]{
     flex-direction: column;
     gap: 0;
     align-items: stretch;
+    width: 100%;
   }
   .feature-col, .section-cities .col, .section-testimonials .col, .plan-box {
     max-width: 100%;
     min-width: 0;
     margin-bottom: 24px;
+    width: 100%;
   }
   .steps-row {
     flex-direction: column;
     gap: 0;
+    width: 100%;
   }
   .steps-img-box, .steps-content-box {
     width: 100%;
@@ -917,94 +963,252 @@ input[type=checkbox]{
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
+    width: 100%;
+    padding: 0 2vw;
   }
 }
 
 /* Mobile (<=600px) */
 @media (max-width: 600px) {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  .row {
+    max-width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0 3vw;
+    overflow-x: hidden;
+  }
+  
   header {
     height: 60vh;
     min-height: 340px;
     background-attachment: scroll;
+    width: 100%;
+    overflow-x: hidden;
   }
+  
+  nav {
+    width: 100%;
+    padding: 0 3vw;
+  }
+  
+  nav .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+  }
+  
   .hero-text-box {
     position: static;
     transform: none;
     top: auto;
     left: auto;
-    width: 100vw;
+    width: 100%;
+    max-width: 100vw;
     text-align: center;
-    padding: 0 4vw;
+    padding: 20px 4vw;
+    margin: 0;
+    overflow-x: hidden;
   }
+  
   .logo {
-    height: 60px;
+    height: 50px;
+    width: auto;
     margin-top: 10px;
+    flex-shrink: 0;
   }
+  
+  /* Hamburger Menu Styles */
+  .mobile-nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  .hamburger {
+    width: 25px;
+    height: 20px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+  }
+  
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+  
+  .hamburger span:nth-child(1) {
+    top: 0px;
+  }
+  
+  .hamburger span:nth-child(2) {
+    top: 8px;
+  }
+  
+  .hamburger span:nth-child(3) {
+    top: 16px;
+  }
+  
+  .hamburger.open span:nth-child(1) {
+    top: 8px;
+    transform: rotate(135deg);
+  }
+  
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+  }
+  
+  .hamburger.open span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-135deg);
+  }
+  
   .main-nav {
-    float: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: rgba(0,0,0,0.95);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    width: 100%;
-    background: rgba(0,0,0,0.7);
-    padding: 8px 0;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+    padding: 0;
+    margin: 0;
   }
+  
+  .main-nav.active {
+    right: 0;
+  }
+  
   .main-nav li {
     display: block;
-    margin: 10px 0;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center;
   }
+  
+  .main-nav li a {
+    color: #fff;
+    font-size: 120%;
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+  }
+  
   .features-row, .section-cities .row, .section-testimonials .row, .section-plans .row {
     flex-direction: column;
     gap: 0;
     align-items: stretch;
+    width: 100%;
+    padding: 0;
   }
+  
   .feature-col, .section-cities .col, .section-testimonials .col, .plan-box {
     max-width: 100%;
     min-width: 0;
     margin-bottom: 18px;
+    width: 100%;
   }
+  
   .steps-row {
     flex-direction: column;
     gap: 0;
+    width: 100%;
   }
+  
   .steps-img-box img {
     max-width: 220px;
     width: 90vw;
   }
+  
   .app-buttons {
     flex-direction: column;
     gap: 12px;
+    width: 100%;
   }
+  
   .footer-main {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    width: 100%;
+    padding: 0 3vw;
   }
+  
   .footer-nav, .social-links {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    width: 100%;
   }
+  
   .footer-nav li, .social-links li {
     margin-bottom: 8px;
   }
+  
   .footer-copyright {
     text-align: left;
     margin: 18px 0 0 0;
+    width: 100%;
+    padding: 0 3vw;
   }
+  
   .section-form .row {
     flex-direction: column;
     gap: 0;
     align-items: stretch;
+    width: 100%;
   }
+  
   .section-form .col {
     width: 100%;
     align-items: stretch;
   }
+  
   .contact-form {
-    width: 98vw;
+    width: 94vw;
     min-width: 0;
+    margin: 0 auto;
+  }
+  
+  /* Ensure all sections respect viewport width */
+  section {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Fix button overflow */
+  .btn {
+    max-width: 100%;
+    word-wrap: break-word;
   }
 }
 
@@ -1028,6 +1232,9 @@ input[type=checkbox]{
   }
   .steps-img-box img {
     max-width: 140px;
+  }
+  .row {
+    padding: 0 2vw;
   }
 }
 
